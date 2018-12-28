@@ -9,11 +9,11 @@ using MyExpenses.Models;
 namespace MyExpenses.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewItemPage : ContentPage
+    public partial class NewExpensePage : ContentPage
     {
         public Item Item { get; set; }
 
-        public NewItemPage()
+        public NewExpensePage()
         {
             InitializeComponent();
 
@@ -28,13 +28,19 @@ namespace MyExpenses.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
-            await Navigation.PopModalAsync();
+            MessagingCenter.Send(this, "AddItem", Item);            
+            Pop();
+        }
+
+        void Pop() //byc moze nie bedzie potrzeby robic pop w ogole
+        {
+            if (Navigation.ModalStack.Count >0)
+                Navigation.PopModalAsync();
         }
 
         async void Cancel_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            Pop();
         }
     }
 }

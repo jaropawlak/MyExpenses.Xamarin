@@ -18,7 +18,9 @@ namespace MyExpenses.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
+                new HomeMenuItem {Id = MenuItemType.NewExpense, Title="New Expense" },
+                new HomeMenuItem {Id = MenuItemType.Budgets, Title="Budgets" },
+                new HomeMenuItem {Id = MenuItemType.History, Title="History" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
 
