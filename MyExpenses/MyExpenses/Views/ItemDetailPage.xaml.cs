@@ -24,9 +24,9 @@ namespace MyExpenses.Views
         {
             InitializeComponent();
 
-            var item = new Item
+            var item = new Expense
             {
-                Text = "Item 1",
+                Category = "Item 1",
                 Description = "This is an item description."
             };
 

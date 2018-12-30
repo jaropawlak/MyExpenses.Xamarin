@@ -23,10 +23,31 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Item.Text}" FontSize="Small" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Amount" FontSize="Medium" />
+                <Entry Text="{Binding Item.Amount}" FontSize="Small" />
+                <Label Text="Category" FontSize="Medium" />
+                <Entry Text="{Binding Item.Category}" FontSize="Small" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Description" FontSize="Medium" />
+                <Entry Text="{Binding Item.Description}" FontSize="Small" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Payment" FontSize="Medium" />
+                <Entry Text="{Binding Item.PaymentType}" FontSize="Small" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Date" FontSize="Medium" />
+                <DatePicker Date="{Binding Date}"></DatePicker>
+                <TimePicker Time="{Binding Time}" Format="T"></TimePicker>
+                <Entry Text="{Binding Item.Date}" FontSize="Small" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"></StackLayout>
+
             <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
+            <Entry Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

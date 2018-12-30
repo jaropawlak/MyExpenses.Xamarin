@@ -6,10 +6,10 @@ namespace MyExpenses.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public Expense Item { get; set; }
+        public ItemDetailViewModel(Expense item = null)
         {
-            Title = item?.Text;
+            Title = item?.Category;
             Item = item;
         }
     }
