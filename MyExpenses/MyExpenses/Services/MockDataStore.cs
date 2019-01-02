@@ -18,7 +18,7 @@ namespace MyExpenses.Services
                 new Expense { Id = Guid.NewGuid().ToString(), Amount = 12, Date = DateTime.Now, Description="This is an item description." },
                 new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Description="This is an item description." },
                 new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Third item", Description="This is an item description." },
-                new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Fourth item", Description="This is an item description." },
+                new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Fourth item", Description="This is an item description...hird." },
                 new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Fifth item", Description="This is an item description." },
                 new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Sixth item", Description="This is an item description." },
             };

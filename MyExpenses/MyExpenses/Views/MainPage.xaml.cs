@@ -27,7 +27,7 @@ namespace MyExpenses.Views
                 switch (id)
                 {
                     case (int)MenuItemType.History:
-                        MenuPages.Add(id, new NavigationPage(new HistoryPage()));
+                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
                         break;
                     default:
                     //case (int)MenuItemType.About:

@@ -15,6 +15,13 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout>
+        <StackLayout>
+
+            <SearchBar SearchCommand="{Binding LoadItemsCommand}" Text="{Binding SearchText}"></SearchBar> 
+            <DatePicker Date="{Binding DateFrom}"></DatePicker>
+            <DatePicker Date="{Binding DateTo}"></DatePicker>
+            
+        </StackLayout>
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
@@ -33,6 +40,10 @@
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
                             <Label Text="{Binding Description}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" /> 
+                            <Label Text="{Binding Category}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />

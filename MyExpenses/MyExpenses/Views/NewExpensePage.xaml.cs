@@ -49,7 +49,7 @@ namespace MyExpenses.Views
             BindingContext = this;
         }
 
-        async void Save_Clicked(object sender, EventArgs e)
+        void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "AddItem", Item);            
             Pop();
