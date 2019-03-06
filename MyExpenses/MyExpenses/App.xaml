@@ -10,6 +10,11 @@
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+            <OnPlatform x:TypeArguments="x:String" x:Key="Awesome">
+                <On Platform="Android" Value="fontawesome-webfont.ttf#FontAwesome Regular"/>
+                <On Platform="UWP" Value="/Assets/fontawesome-webfont.ttf#FontAwesome Regular"/>
+                <On Platform="iOS" Value="fontawesome-webfont"/>
+            </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

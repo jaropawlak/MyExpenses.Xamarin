@@ -2,18 +2,20 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MyExpenses.Views;
+using MyExpenses.Models;
+using System.Diagnostics;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MyExpenses
 {
     public partial class App : Application
     {
-
-        public App()
+        public static DatabaseRepository Repository;
+        public App(string dbPath)
         {
             InitializeComponent();
-
-
+            Debug.WriteLine($"Database located at: {dbPath}");
+            Repository = new DatabaseRepository(dbPath);
             MainPage = new MainPage();
         }
 

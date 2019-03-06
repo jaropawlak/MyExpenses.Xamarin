@@ -22,15 +22,9 @@ namespace MyExpenses.Views
 
         public ItemDetailPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
-            var item = new Expense
-            {
-                Category = "Item 1",
-                Description = "This is an item description."
-            };
-
-            viewModel = new ItemDetailViewModel(item);
+            viewModel = new ItemDetailViewModel(null);
             BindingContext = viewModel;
         }
     }

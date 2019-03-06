@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using Foundation;
@@ -23,7 +24,13 @@ namespace MyExpenses.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            var lib = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Librry", "Data");
+            if (!Directory.Exists(lib))
+            {
+                Directory.CreateDirectory(lib);
+            }
+            var dbPath = Path.Combine(lib, "database.sqlite");
+            LoadApplication(new App(dbPath));
 
             return base.FinishedLaunching(app, options);
         }

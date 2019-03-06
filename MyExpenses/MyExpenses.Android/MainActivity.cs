@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.IO;
 
 namespace MyExpenses.Droid
 {
@@ -19,7 +20,9 @@ namespace MyExpenses.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            var dbPath = Path.Combine( System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "database.sqlite");
+
+            LoadApplication(new App(dbPath));
         }
     }
 }

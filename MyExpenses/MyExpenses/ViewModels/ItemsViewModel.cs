@@ -44,7 +44,7 @@ namespace MyExpenses.ViewModels
             {
                 var newItem = item as Expense;
                 Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
+                await DataStore.AddExpenseAsync(newItem);
             });
         }
         
@@ -58,13 +58,13 @@ namespace MyExpenses.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await DataStore.GetExpensesAsync(true);
 
                 Regex regex = string.IsNullOrEmpty(SearchText) ? null : new Regex(SearchText, RegexOptions.IgnoreCase);
                 
                 var filtered = items.Where(i => (
                     regex == null || 
-                    (!string.IsNullOrEmpty(i.Category) && regex.IsMatch(i.Category)) || 
+                    //(!string.IsNullOrEmpty(i.Category) && regex.IsMatch(i.Category)) || 
                     (!string.IsNullOrEmpty(i.Description) && regex.IsMatch(i.Description))
                 ) && i.Date >= DateFrom && i.Date <= DateTo);
                 foreach (var item in filtered)

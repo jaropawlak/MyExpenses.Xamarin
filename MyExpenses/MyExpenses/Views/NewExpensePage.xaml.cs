@@ -5,12 +5,14 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using MyExpenses.Models;
+using MyExpenses.ViewModels;
 
 namespace MyExpenses.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewExpensePage : ContentPage
     {
+        NewExpenseViewModel viewModel;
         public Expense Item  {get;set;}
         //date for datepicke
         public DateTime Date
@@ -46,7 +48,7 @@ namespace MyExpenses.Views
                 Description = "This is an item description."
             };
 
-            BindingContext = this;
+            BindingContext = viewModel = new NewExpenseViewModel();
         }
 
         void Save_Clicked(object sender, EventArgs e)

@@ -13,52 +13,52 @@ namespace MyExpenses.Services
         public MockDataStore()
         {
             items = new List<Expense>();
-            var mockItems = new List<Expense>
+            var mockExpenses = new List<Expense>
             {
-                new Expense { Id = Guid.NewGuid().ToString(), Amount = 12, Date = DateTime.Now, Description="This is an item description." },
-                new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Description="This is an item description." },
-                new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Third item", Description="This is an item description." },
-                new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Fourth item", Description="This is an item description...hird." },
-                new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Fifth item", Description="This is an item description." },
-                new Expense {Id = Guid.NewGuid().ToString(),Amount = 12, Date = DateTime.Now, Category = "Sixth item", Description="This is an item description." },
+                new Expense { Id =1, Amount = 12, Date = DateTime.Now, Description="This is an item description." },
+                new Expense {Id = 2,Amount = 12, Date = DateTime.Now, Description="This is an item description." },
+                new Expense {Id = 3,Amount = 12, Date = DateTime.Now, Category = new BudgetCategory { Name = "Category1" }, Description="This is an item description." },
+                new Expense {Id =4,Amount = 12, Date = DateTime.Now, Category =  new BudgetCategory { Name = "Category1" }, Description="This is an item description...hird." },
+                new Expense {Id =5,Amount = 12, Date = DateTime.Now, Category =  new BudgetCategory { Name = "Category1" }, Description="This is an item description." },
+                new Expense {Id = 6,Amount = 12, Date = DateTime.Now, Category = new BudgetCategory { Name = "Category1" }, Description="This is an item description." },
             };
 
-            foreach (var item in mockItems)
+            foreach (var item in mockExpenses)
             {
                 items.Add(item);
             }
         }
 
-        public async Task<bool> AddItemAsync(Expense item)
+        public async Task<bool> AddExpenseAsync(Expense item)
         {
             items.Add(item);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Expense item)
+        public async Task<bool> UpdateExpenseAsync(Expense item)
         {
-            var oldItem = items.Where((Expense arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
+            var oldExpense = items.Where((Expense arg) => arg.Id == item.Id).FirstOrDefault();
+            items.Remove(oldExpense);
             items.Add(item);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteExpenseAsync(int id)
         {
-            var oldItem = items.Where((Expense arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            var oldExpense = items.Where((Expense arg) => arg.Id == id).FirstOrDefault();
+            items.Remove(oldExpense);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Expense> GetItemAsync(string id)
+        public async Task<Expense> GetExpenseAsync(int id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Expense>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Expense>> GetExpensesAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }

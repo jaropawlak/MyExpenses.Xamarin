@@ -9,7 +9,7 @@ namespace MyExpenses.ViewModels
         public Expense Item { get; set; }
         public ItemDetailViewModel(Expense item = null)
         {
-            Title = item?.Category;
+            Title = item?.Category?.Name;
             Item = item;
         }
     }
