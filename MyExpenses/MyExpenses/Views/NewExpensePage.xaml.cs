@@ -13,7 +13,7 @@ namespace MyExpenses.Views
     public partial class NewExpensePage : ContentPage
     {
         NewExpenseViewModel viewModel;
-        public Expense Item  {get;set;}
+       
         //date for datepicke
         public DateTime Date
         {
@@ -41,31 +41,10 @@ namespace MyExpenses.Views
         public NewExpensePage()
         {
             InitializeComponent();
-
-            Item = new Expense
-            {
-                Date = DateTime.Now,
-                Description = "This is an item description."
-            };
-
+           
             BindingContext = viewModel = new NewExpenseViewModel();
         }
 
-        void Save_Clicked(object sender, EventArgs e)
-        {
-            MessagingCenter.Send(this, "AddItem", Item);            
-            Pop();
-        }
-
-        void Pop() //byc moze nie bedzie potrzeby robic pop w ogole
-        {
-            if (Navigation.ModalStack.Count >0)
-                Navigation.PopModalAsync();
-        }
-
-        async void Cancel_Clicked(object sender, EventArgs e)
-        {
-            Pop();
-        }
+      
     }
 }

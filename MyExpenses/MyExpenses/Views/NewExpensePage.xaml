@@ -3,19 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyExpenses.Views.NewExpensePage"
              Title="New Item">
-    
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="cancel.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
         <ToolbarItem Text="Save" Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
+                    <On Platform="UWP" Value="add.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -24,28 +17,28 @@
     <ContentPage.Content>
         <Grid VerticalOptions="Start">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25*"></ColumnDefinition>
-                <ColumnDefinition Width="25*"></ColumnDefinition>
-                <ColumnDefinition Width="25*"></ColumnDefinition>
-                <ColumnDefinition Width="25*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="45*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="45*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Text="&#xf0d6;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}">
                 
             </Label>
-            <Entry  Grid.Column="1" Grid.Row="0" Text="{Binding Item.Amount}" FontSize="Micro" />
-            
-             <Label Grid.Column="2" Grid.Row="0"  Text="Category" FontSize="Micro" VerticalTextAlignment="Center"/>
+            <Entry  Grid.Column="1" Grid.Row="0" Text="{Binding Item.Amount}" FontSize="Micro" Keyboard="Numeric" />
+
+            <Label Grid.Column="2" Grid.Row="0"  Text="&#xf02b;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}"/>
              <Entry Grid.Column="3" Grid.Row="0" Text="{Binding Item.Category}" FontSize="Micro" />
-            
-            
-            <Label Grid.Column="0" Grid.Row="1" Text="Description" FontSize="Micro" VerticalTextAlignment="Center"/>
-                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Item.Description}" FontSize="Micro" Placeholder="Description" /> 
-            
-            <Label Grid.Column="0" Grid.Row="2" Text="Payment" FontSize="Micro" VerticalTextAlignment="Center"/>
+
+
+            <Label Grid.Column="0" Grid.Row="1" Text="&#xf15c;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}"/>
+                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Item.Description}" FontSize="Micro" Placeholder="Description" />
+
+            <Label Grid.Column="0" Grid.Row="2" Text="&#xf19c;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}"/>
                 <Entry Grid.Column="1" Grid.Row="2" Text="{Binding Item.PaymentType}" FontSize="Micro" />
-            
-            <Label Grid.Column="0" Grid.Row="3" Text="Date" FontSize="Micro" VerticalTextAlignment="Center" />
+
+            <Label Grid.Column="0" Grid.Row="3" Text="&#xf017;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}"/>
              <DatePicker Grid.Column="1" Grid.Row="3" Date="{Binding Date}"></DatePicker>
         </Grid>
        
