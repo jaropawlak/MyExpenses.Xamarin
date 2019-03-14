@@ -17,7 +17,7 @@ namespace MyExpenses.Models
 
         public DateTime Date { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public BudgetCategory Category { get; set; }
     }
 }

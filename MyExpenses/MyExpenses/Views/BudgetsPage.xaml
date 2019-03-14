@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyExpenses.Views.BudgetsPage"             
+             Disappearing="ContentPage_Disappearing"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add"  Command="{Binding AddNewItemCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView                  
+                ItemsSource="{Binding BudgetCategories}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem IsDestructive="True" Text="Delete" Clicked="Delete_Clicked" CommandParameter="{Binding .}"></MenuItem>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                
+                                <Entry Placeholder="Name" HorizontalOptions="FillAndExpand"  Text="{Binding Name, Mode=TwoWay}"></Entry>
+                                <Entry Placeholder="Budget" Keyboard="Numeric" HorizontalOptions="FillAndExpand" Text="{Binding Bugdet, Mode=TwoWay}" ></Entry>
+                              
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

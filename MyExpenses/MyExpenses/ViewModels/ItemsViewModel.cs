@@ -38,14 +38,7 @@ namespace MyExpenses.ViewModels
 
             Title = "History";
             Items = new ObservableCollection<Expense>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            MessagingCenter.Subscribe<NewExpensePage, Expense>(this, "AddItem", async (obj, item) =>
-            {
-                var newItem = item as Expense;
-                Items.Add(newItem);
-                await DataStore.AddExpenseAsync(newItem);
-            });
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());           
         }
         
         async Task ExecuteLoadItemsCommand()
@@ -58,13 +51,13 @@ namespace MyExpenses.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetExpensesAsync(true);
+                var items = await App.Repository.GetExpensesAsync(true);
 
                 Regex regex = string.IsNullOrEmpty(SearchText) ? null : new Regex(SearchText, RegexOptions.IgnoreCase);
                 
                 var filtered = items.Where(i => (
                     regex == null || 
-                    //(!string.IsNullOrEmpty(i.Category) && regex.IsMatch(i.Category)) || 
+                    (i.Category != null && regex.IsMatch(i.Category.Name)) || 
                     (!string.IsNullOrEmpty(i.Description) && regex.IsMatch(i.Description))
                 ) && i.Date >= DateFrom && i.Date <= DateTo);
                 foreach (var item in filtered)

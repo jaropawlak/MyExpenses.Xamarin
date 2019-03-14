@@ -14,37 +14,12 @@ namespace MyExpenses.Views
     {
         NewExpenseViewModel viewModel;
        
-        //date for datepicke
-        public DateTime Date
-        {
-            get
-            {
-                return Item.Date.Date;
-            }
-            set
-            {
-                Item.Date = value.Add(Time);
-            }
-        }
-        // time for timepicker
-        public TimeSpan Time
-        {
-            get
-            {
-                return Item.Date.TimeOfDay;
-            }
-            set
-            {
-                Item.Date = Date.Add(value);
-            }
-        }
+      
         public NewExpensePage()
         {
-            InitializeComponent();
-           
+            InitializeComponent();           
             BindingContext = viewModel = new NewExpenseViewModel();
         }
-
-      
+       
     }
 }

@@ -29,6 +29,9 @@ namespace MyExpenses.Views
                     case (int)MenuItemType.History:
                         MenuPages.Add(id, new NavigationPage(new ItemsPage()));
                         break;
+                    case (int)MenuItemType.Budgets:
+                        MenuPages.Add(id, new NavigationPage(new BudgetsPage()));
+                        break;
                     default:
                     //case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));

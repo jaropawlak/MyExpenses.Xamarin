@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fa="clr-namespace:MyExpenses.Helpers"
+             xmlns:fl="clr-namespace:MyExpenses.Controls"
              x:Class="MyExpenses.Views.NewExpensePage"
              Title="New Item">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+        <ToolbarItem Text="Save" Command="{Binding AddExpenseCommand}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>
@@ -17,29 +19,30 @@
     <ContentPage.Content>
         <Grid VerticalOptions="Start">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
-                <ColumnDefinition Width="45*"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
-                <ColumnDefinition Width="45*"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="15"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
-            <Label Grid.Column="0" Grid.Row="0" Text="&#xf0d6;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}">
+           
+            <fl:FALabel Grid.Column="0" Grid.Row="0" Icon="Amount" FontSize="Micro" VerticalTextAlignment="Center">
                 
-            </Label>
+            </fl:FALabel>
             <Entry  Grid.Column="1" Grid.Row="0" Text="{Binding Item.Amount}" FontSize="Micro" Keyboard="Numeric" />
 
-            <Label Grid.Column="2" Grid.Row="0"  Text="&#xf02b;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}"/>
-             <Entry Grid.Column="3" Grid.Row="0" Text="{Binding Item.Category}" FontSize="Micro" />
+            <fl:FALabel Grid.Column="2" Grid.Row="0"  Icon="Category" FontSize="Micro" VerticalTextAlignment="Center"/>
+             <Picker Grid.Column="3" Grid.Row="0" SelectedItem="{Binding Item.Category}" ItemsSource="{Binding Categories}" ItemDisplayBinding="{Binding Name}" FontSize="Micro" />
 
 
-            <Label Grid.Column="0" Grid.Row="1" Text="&#xf15c;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}"/>
+            <fl:FALabel Grid.Column="0" Grid.Row="1" Icon="Description" FontSize="Micro" VerticalTextAlignment="Center" />
                 <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Item.Description}" FontSize="Micro" Placeholder="Description" />
 
-            <Label Grid.Column="0" Grid.Row="2" Text="&#xf19c;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}"/>
-                <Entry Grid.Column="1" Grid.Row="2" Text="{Binding Item.PaymentType}" FontSize="Micro" />
+            <fl:FALabel Grid.Column="0" Grid.Row="2" Icon="PaymentType" FontSize="Micro" VerticalTextAlignment="Center"/>
+                <Picker Grid.Column="1" Grid.Row="2" ItemsSource="{Binding PaymentTypes}" SelectedIndex="{Binding SelectedPaymentTypeIndex}}" FontSize="Micro" />
 
-            <Label Grid.Column="0" Grid.Row="3" Text="&#xf017;" FontSize="Micro" VerticalTextAlignment="Center" FontFamily="{StaticResource Awesome}"/>
-             <DatePicker Grid.Column="1" Grid.Row="3" Date="{Binding Date}"></DatePicker>
+            <fl:FALabel Grid.Column="0" Grid.Row="3" Icon="Date" FontSize="Micro" VerticalTextAlignment="Center"/>
+             <DatePicker  HorizontalOptions="Start" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Date="{Binding Date}"></DatePicker>
+             <TimePicker HorizontalOptions="Start" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Format="T"  Time="{Binding Time}"></TimePicker>
         </Grid>
        
     </ContentPage.Content>
