@@ -4,10 +4,10 @@
 
 /MyExpenses/MyExpenses/bin/Debug/netstandard2.0
 /MyExpenses/MyExpenses/obj
-/MyExpenses/MyExpenses.Android/bin/Debug
+/MyExpenses/MyExpenses.Android/bin/
 /MyExpenses/MyExpenses.Android/obj
-/MyExpenses/MyExpenses.iOS/bin/iPhone/Debug
+/MyExpenses/MyExpenses.iOS/bin/
 /MyExpenses/MyExpenses.iOS/obj
-/MyExpenses/MyExpenses.UWP/bin/x86/Debug
+/MyExpenses/MyExpenses.UWP/bin/
 /MyExpenses/MyExpenses.UWP/obj
 /.vs/MyExpenses
