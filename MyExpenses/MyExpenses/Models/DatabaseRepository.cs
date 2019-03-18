@@ -101,6 +101,10 @@ namespace MyExpenses.Models
             }
             return true;
         }
+        public async Task SaveAsync()
+        {
+            await SaveChangesAsync().ConfigureAwait(false);
+        }
         
     }
 }

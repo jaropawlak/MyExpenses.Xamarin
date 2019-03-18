@@ -30,6 +30,7 @@ namespace MyExpenses.iOS
                 Directory.CreateDirectory(lib);
             }
             var dbPath = Path.Combine(lib, "database.sqlite");
+            SQLitePCL.Batteries.Init();
             LoadApplication(new App(dbPath));
 
             return base.FinishedLaunching(app, options);

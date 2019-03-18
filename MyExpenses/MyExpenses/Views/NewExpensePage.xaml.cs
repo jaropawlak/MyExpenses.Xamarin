@@ -16,10 +16,10 @@ namespace MyExpenses.Views
         NewExpenseViewModel viewModel;
        
       
-        public NewExpensePage()
+        public NewExpensePage(NewExpenseViewModel model)
         {
             InitializeComponent();           
-            BindingContext = viewModel = new NewExpenseViewModel(DIService.Resolve<IDataStore>());
+            BindingContext = viewModel = model;
         }
        
     }

@@ -37,10 +37,6 @@ namespace MyExpenses.Views
             ItemsListView.SelectedItem = null;
         }
 
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewExpensePage()));
-        }
 
         protected override void OnAppearing()
         {

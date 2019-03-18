@@ -18,5 +18,6 @@ namespace MyExpenses.Services
         Task<bool> DeleteBudgetCategoryAsync(int id);
         Task<BudgetCategory> GetBudgetCategoryAsync(int id);
         Task<IEnumerable<BudgetCategory>> GetBudgetCategoriesAsync(bool forceRefresh = false);
+        Task SaveAsync();
     }
 }

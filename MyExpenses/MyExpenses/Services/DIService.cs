@@ -17,12 +17,6 @@ namespace MyExpenses.Services
 
             container.Register<IDataStore>(() => new DatabaseRepository(dbPath));
 
-            container.Register<NewExpensePage>();
-            container.Register<NewExpenseViewModel>();
-
-            container.Register<BudgetsPage>();
-            container.Register<BudgetsViewModel>();
-
 
             container.Verify();
         }

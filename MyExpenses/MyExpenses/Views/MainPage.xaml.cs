@@ -17,7 +17,7 @@ namespace MyExpenses.Views
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
-
+            Detail = new NavigationPage(DIService.Resolve<NewExpensePage>());
             MenuPages.Add((int)MenuItemType.NewExpense, (NavigationPage)Detail);
         }
 
