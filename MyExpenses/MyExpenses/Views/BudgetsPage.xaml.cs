@@ -15,10 +15,10 @@ namespace MyExpenses.Views
 	public partial class BudgetsPage : ContentPage
 	{
         BudgetsViewModel viewModel;
-		public BudgetsPage ()
+		public BudgetsPage (BudgetsViewModel model)
 		{
 			InitializeComponent ();
-            BindingContext = viewModel = new BudgetsViewModel();
+            BindingContext = viewModel = model;
 		}
 
         private async void ContentPage_Disappearing(object sender, EventArgs e)
@@ -26,10 +26,10 @@ namespace MyExpenses.Views
             await viewModel.SaveChanges();
         }
 
-        private  void Delete_Clicked(object sender, EventArgs e)
+        private async void Delete_Clicked(object sender, EventArgs e)
         {
             var s = (MenuItem)sender;
-            viewModel.Delete(s.CommandParameter as BudgetCategory);
+            await viewModel.Delete(s.CommandParameter as BudgetCategory);
 
         }
         

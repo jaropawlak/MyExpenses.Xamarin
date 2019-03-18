@@ -1,4 +1,5 @@
 ﻿using MyExpenses.Models;
+using MyExpenses.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,8 @@ namespace MyExpenses.ViewModels
     public class NewExpenseViewModel : BaseViewModel
     {
         public Command AddExpenseCommand { get; set; }
+
+        private readonly IDataStore _dataStore;
 
         public ObservableCollection<BudgetCategory> Categories { get; set; }
        
@@ -49,31 +52,32 @@ namespace MyExpenses.ViewModels
             }
         }
 
-        public NewExpenseViewModel()
+        public NewExpenseViewModel(IDataStore dataStore)
         {
+            _dataStore = dataStore;
             Categories = new ObservableCollection<BudgetCategory>();
             Item = new Expense();
             AddExpenseCommand = new Command(async () => await ExecuteAddExpenseCommand());
-            MessagingCenter.Subscribe<DatabaseRepository>(this, "CategoriesChanged", async (sender) => await UpdateCategories());
+            MessagingCenter.Subscribe<BudgetsViewModel>(this, "CategoriesChanged", async (sender) => await UpdateCategories());
             UpdateCategories().Wait();
         }
 
         ~NewExpenseViewModel()
         {
-            MessagingCenter.Unsubscribe<DatabaseRepository>(this, "CategoriesChanged");
+            MessagingCenter.Unsubscribe<BudgetsViewModel>(this, "CategoriesChanged");
         }
         public Expense Item { get; set; }
 
         async Task ExecuteAddExpenseCommand()
         {
             Item.PaymentType = (PaymentType)Enum.Parse(typeof(PaymentType), PaymentTypes[SelectedPaymentTypeIndex]);
-            await App.Repository.AddExpenseAsync(Item);
+            await _dataStore.AddExpenseAsync(Item);
             Item = new Expense();
         }
         async Task UpdateCategories()
         {
             Categories.Clear();
-            foreach (var i in await App.Repository.GetCategoriesAsync())
+            foreach (var i in await _dataStore.GetBudgetCategoriesAsync())
             {
                 Categories.Add(i);
             }

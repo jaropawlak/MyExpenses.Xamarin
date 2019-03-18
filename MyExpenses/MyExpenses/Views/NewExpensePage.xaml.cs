@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 
 using MyExpenses.Models;
 using MyExpenses.ViewModels;
+using MyExpenses.Services;
 
 namespace MyExpenses.Views
 {
@@ -18,7 +19,7 @@ namespace MyExpenses.Views
         public NewExpensePage()
         {
             InitializeComponent();           
-            BindingContext = viewModel = new NewExpenseViewModel();
+            BindingContext = viewModel = new NewExpenseViewModel(DIService.Resolve<IDataStore>());
         }
        
     }

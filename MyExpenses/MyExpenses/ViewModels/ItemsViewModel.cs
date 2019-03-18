@@ -9,6 +9,7 @@ using MyExpenses.Models;
 using MyExpenses.Views;
 using System.Linq;
 using System.Text.RegularExpressions;
+using MyExpenses.Services;
 
 namespace MyExpenses.ViewModels
 {
@@ -31,8 +32,10 @@ namespace MyExpenses.ViewModels
         /// </summary>
         public DateTime DateTo { get; set; }
 
-        public ItemsViewModel()
+        private IDataStore _dataStore;
+        public ItemsViewModel(IDataStore dataStore)
         {
+            _dataStore = dataStore;
             DateFrom = DateTime.Today.AddDays(-7);
             DateTo = DateTime.Today.AddDays(1);
 
@@ -51,7 +54,7 @@ namespace MyExpenses.ViewModels
             try
             {
                 Items.Clear();
-                var items = await App.Repository.GetExpensesAsync(true);
+                var items = await _dataStore.GetExpensesAsync(true);
 
                 Regex regex = string.IsNullOrEmpty(SearchText) ? null : new Regex(SearchText, RegexOptions.IgnoreCase);
                 

@@ -11,7 +11,7 @@ using Xamarin.Forms;
 namespace MyExpenses.Models
 {
     [assebly: Dependency (typeof(DatabaseRepository))]
-    public class DatabaseRepository : DbContext, IDataStore<Expense>
+    public class DatabaseRepository : DbContext, IDataStore
     {
         string _path;
         public DatabaseRepository(string path)
@@ -45,14 +45,14 @@ namespace MyExpenses.Models
             var item = await Expenses.FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
             return item;
         }
-        public async Task<BudgetCategory> GetCategoryAsync(int id)
+        public async Task<BudgetCategory> GetBudgetCategoryAsync(int id)
         {
             var item = await Categories.FirstOrDefaultAsync(x => x.CategoryId == id).ConfigureAwait(false);
             return item;
         }
         public async Task<IEnumerable<Expense>> GetExpensesAsync(bool forceRefresh = false) =>       
             await Expenses.ToListAsync().ConfigureAwait(false);
-         public async Task<IList<BudgetCategory>> GetCategoriesAsync(bool forceRefresh = false) =>       
+         public async Task<IEnumerable<BudgetCategory>> GetBudgetCategoriesAsync(bool forceRefresh = false) =>       
             await Categories.ToListAsync().ConfigureAwait(false);
         
         public async Task<bool> AddExpenseAsync(Expense item)
@@ -61,7 +61,7 @@ namespace MyExpenses.Models
             await SaveChangesAsync().ConfigureAwait(false);
             return true;
         }
-        public async Task<bool> AddCategoryAsync(BudgetCategory item)
+        public async Task<bool> AddBudgetCategoryAsync(BudgetCategory item)
         {
             await Categories.AddAsync(item).ConfigureAwait(false);                 
             return true;
@@ -73,9 +73,11 @@ namespace MyExpenses.Models
             await SaveChangesAsync().ConfigureAwait(false);
             return true;
         }
-        public void UpdateCategory(BudgetCategory item)
+        public async Task<bool> UpdateBudgetCategoryAsync(BudgetCategory item)
         {
-            Categories.Update(item);                               
+            Categories.Update(item);
+            await SaveChangesAsync().ConfigureAwait(false);
+            return true;                             
         }
         
         public async Task<bool> DeleteExpenseAsync(int id)
@@ -89,14 +91,15 @@ namespace MyExpenses.Models
             
             return true;
         }
-        public async Task DeleteCategoryAsync(int id)
+        public async Task<bool> DeleteBudgetCategoryAsync(int id)
         {
             var item = await Categories.FirstOrDefaultAsync(x => x.CategoryId == id).ConfigureAwait(false);
             if (item != null)
             {
-                Categories.Remove(item);                    
+                Categories.Remove(item);
+                await SaveChangesAsync().ConfigureAwait(false);           
             }
-            
+            return true;
         }
         
     }

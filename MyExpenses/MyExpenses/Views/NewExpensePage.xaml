@@ -15,16 +15,24 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    
     <ContentPage.Content>
-        <Grid VerticalOptions="Start">
+        
+        <Grid VerticalOptions="FillAndExpand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="15"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-           
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
             <fl:FALabel Grid.Column="0" Grid.Row="0" Icon="Amount" FontSize="Micro" VerticalTextAlignment="Center">
                 
             </fl:FALabel>
@@ -43,7 +51,29 @@
             <fl:FALabel Grid.Column="0" Grid.Row="3" Icon="Date" FontSize="Micro" VerticalTextAlignment="Center"/>
              <DatePicker  HorizontalOptions="Start" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Date="{Binding Date}"></DatePicker>
              <TimePicker HorizontalOptions="Start" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Format="T"  Time="{Binding Time}"></TimePicker>
-        </Grid>
+            
+            
        
+            <ListView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="End"
+                      ItemsSource="{Binding BudgetProgress}"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="{Binding ProgressBar}"></ColumnDefinition>
+                                    <ColumnDefinition Width="{Binding RemainingProgressBar}"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding CategoryName}" HorizontalOptions="Start"></Label>
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding CategoryBudget}" HorizontalOptions="End"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

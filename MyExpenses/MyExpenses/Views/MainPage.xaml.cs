@@ -1,4 +1,5 @@
 ﻿using MyExpenses.Models;
+using MyExpenses.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,10 +28,10 @@ namespace MyExpenses.Views
                 switch (id)
                 {
                     case (int)MenuItemType.History:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        MenuPages.Add(id, new NavigationPage(DIService.Resolve<ItemsPage>()));
                         break;
                     case (int)MenuItemType.Budgets:
-                        MenuPages.Add(id, new NavigationPage(new BudgetsPage()));
+                        MenuPages.Add(id, new NavigationPage(DIService.Resolve<BudgetsPage>()));
                         break;
                     default:
                     //case (int)MenuItemType.About:

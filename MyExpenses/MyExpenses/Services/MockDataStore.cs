@@ -6,7 +6,7 @@ using MyExpenses.Models;
 
 namespace MyExpenses.Services
 {
-    public class MockDataStore : IDataStore<Expense>
+    public class MockDataStore : IDataStore
     {
         List<Expense> items;
 
@@ -61,6 +61,31 @@ namespace MyExpenses.Services
         public async Task<IEnumerable<Expense>> GetExpensesAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
+        }
+
+        public Task<bool> AddBudgetCategoryAsync(BudgetCategory item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateBudgetCategoryAsync(BudgetCategory item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteBudgetCategoryAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<BudgetCategory> GetBudgetCategoryAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<BudgetCategory>> GetBudgetCategoriesAsync(bool forceRefresh = false)
+        {
+            throw new NotImplementedException();
         }
     }
 }

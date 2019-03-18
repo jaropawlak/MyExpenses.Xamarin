@@ -18,11 +18,11 @@ namespace MyExpenses.Views
     {
         ItemsViewModel viewModel;
 
-        public ItemsPage()
+        public ItemsPage(ItemsViewModel model)
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = model;
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
