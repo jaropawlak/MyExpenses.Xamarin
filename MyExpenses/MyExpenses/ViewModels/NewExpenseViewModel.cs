@@ -62,11 +62,8 @@ namespace MyExpenses.ViewModels
             UpdateCategories().Wait();
         }
 
-        ~NewExpenseViewModel()
-        {
-            MessagingCenter.Unsubscribe<BudgetsViewModel>(this, "CategoriesChanged");
-        }
-        public Expense Item { get; set; }
+        private Expense _item;  
+        public Expense Item { get => _item; set => SetProperty(ref _item,value); }
 
         async Task ExecuteAddExpenseCommand()
         {

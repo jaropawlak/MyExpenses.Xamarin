@@ -1,9 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace MyExpenses.Models
 {
-    public class Expense
+    public class Expense 
     {
 
         public Expense()

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+[assembly: Dependency (typeof(MyExpenses.Models.DatabaseRepository))]
 namespace MyExpenses.Models
 {
-    [assebly: Dependency (typeof(DatabaseRepository))]
     public class DatabaseRepository : DbContext, IDataStore
     {
         string _path;
