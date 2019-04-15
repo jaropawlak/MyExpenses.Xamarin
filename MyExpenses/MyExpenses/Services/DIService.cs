@@ -1,4 +1,5 @@
-﻿using MyExpenses.Models;
+﻿using MyExpenses.Interfaces;
+using MyExpenses.Models;
 using MyExpenses.ViewModels;
 using MyExpenses.Views;
 using SimpleInjector;
@@ -16,7 +17,8 @@ namespace MyExpenses.Services
             container = new Container();
 
             container.Register<IDataStore>(() => new DatabaseRepository(dbPath));
-
+            container.Register<IProgressCalculator, ProgressCalculator>();
+            
 
             container.Verify();
         }

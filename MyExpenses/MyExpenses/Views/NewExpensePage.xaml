@@ -46,7 +46,7 @@
                 <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Item.Description}" FontSize="Micro" Placeholder="Description" />
 
             <fl:FALabel Grid.Column="0" Grid.Row="2" Icon="PaymentType" FontSize="Micro" VerticalTextAlignment="Center"/>
-                <Picker Grid.Column="1" Grid.Row="2" ItemsSource="{Binding PaymentTypes}" SelectedIndex="{Binding SelectedPaymentTypeIndex}}" FontSize="Micro" />
+                <Picker Grid.Column="1" Grid.Row="2" ItemsSource="{Binding PaymentTypes}" SelectedIndex="{Binding SelectedPaymentTypeIndex}" FontSize="Micro" />
 
             <fl:FALabel Grid.Column="0" Grid.Row="3" Icon="Date" FontSize="Micro" VerticalTextAlignment="Center"/>
              <DatePicker  HorizontalOptions="Start" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Date="{Binding Date}"></DatePicker>
@@ -56,18 +56,21 @@
        
             <ListView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4"
                 VerticalOptions="End"
-                      ItemsSource="{Binding BudgetProgress}"
+                      ItemsSource="{Binding Progress}"
                       >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="{Binding ProgressBar}"></ColumnDefinition>
-                                    <ColumnDefinition Width="{Binding RemainingProgressBar}"></ColumnDefinition>
+                                    <ColumnDefinition Width="{Binding Progress}">
+                                        
+                                    </ColumnDefinition>
+                                    <ColumnDefinition Width="{Binding Remaining}"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding CategoryName}" HorizontalOptions="Start"></Label>
-                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding CategoryBudget}" HorizontalOptions="End"></Label>
+                                <BoxView Grid.Row="0" Grid.Column="0" BackgroundColor="{Binding Color}"></BoxView>
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Category.Name}" HorizontalOptions="Start"></Label>
+                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Category.Budget}" HorizontalOptions="End"></Label>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

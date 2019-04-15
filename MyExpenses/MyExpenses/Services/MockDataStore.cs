@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MyExpenses.Interfaces;
 using MyExpenses.Models;
 
 namespace MyExpenses.Services

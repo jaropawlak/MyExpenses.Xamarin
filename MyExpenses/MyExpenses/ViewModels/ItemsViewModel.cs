@@ -10,6 +10,7 @@ using MyExpenses.Views;
 using System.Linq;
 using System.Text.RegularExpressions;
 using MyExpenses.Services;
+using MyExpenses.Interfaces;
 
 namespace MyExpenses.ViewModels
 {

@@ -1,4 +1,5 @@
-﻿using MyExpenses.Models;
+﻿using MyExpenses.Interfaces;
+using MyExpenses.Models;
 using MyExpenses.Services;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,11 @@ namespace MyExpenses.ViewModels
         public Command AddExpenseCommand { get; set; }
 
         private readonly IDataStore _dataStore;
-
-        public ObservableCollection<BudgetCategory> Categories { get; set; }
+        private readonly IProgressCalculator _progressCalculator;
        
+        public ObservableCollection<BudgetCategory> Categories { get; set; }
+
+        public ObservableCollection<BudgetProgress> Progress { get; set; }
         public IList<String> PaymentTypes
         {
             get
@@ -52,14 +55,28 @@ namespace MyExpenses.ViewModels
             }
         }
 
-        public NewExpenseViewModel(IDataStore dataStore)
+        public NewExpenseViewModel(IDataStore dataStore, IProgressCalculator progressCalculator)
         {
             _dataStore = dataStore;
+            _progressCalculator = progressCalculator;
+
+            var _task = _progressCalculator.CalculateProgress();
             Categories = new ObservableCollection<BudgetCategory>();
             Item = new Expense();
-            AddExpenseCommand = new Command(async () => await ExecuteAddExpenseCommand());
-            MessagingCenter.Subscribe<BudgetsViewModel>(this, "CategoriesChanged", async (sender) => await UpdateCategories());
+            AddExpenseCommand = new Command(async () =>
+            {
+                await ExecuteAddExpenseCommand();
+                Progress = new ObservableCollection<BudgetProgress>(await _progressCalculator.CalculateProgress());
+            }
+            );
+            MessagingCenter.Subscribe<BudgetsViewModel>(this, "CategoriesChanged", async (sender) =>
+            {
+                await UpdateCategories();
+                Progress = new ObservableCollection<BudgetProgress>(await _progressCalculator.CalculateProgress());
+            }
+            );
             UpdateCategories().Wait();
+            Progress = new ObservableCollection<BudgetProgress>(_task.Result);
         }
 
         private Expense _item;  
