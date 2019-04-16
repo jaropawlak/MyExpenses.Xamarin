@@ -28,7 +28,11 @@ namespace MyExpenses.Services
                 var expenses = (await _dataStore.GetExpensesAsync()).Where(e => e.CategoryId == category.CategoryId && e.Date >= new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1));
                 var progress = new BudgetProgress { Category = category };
                 int current = expenses.Select(e => e.Amount).Aggregate(0M, (sum, i) => sum + i, a => Convert.ToInt32(a));
-                int calculated = current * 100 / progress.Category.Bugdet;
+                int calculated = 100;
+                if (progress.Category.Bugdet > 0)
+                {
+                    calculated = current * 100 / progress.Category.Bugdet;
+                }
                 if (calculated > 100)
                 {
                     calculated = 100;
