@@ -1,8 +1,9 @@
-﻿using MyExpenses.Interfaces;
+﻿using Autofac;
+using Autofac.Core;
+using MyExpenses.Interfaces;
 using MyExpenses.Models;
 using MyExpenses.ViewModels;
 using MyExpenses.Views;
-using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,22 +12,29 @@ namespace MyExpenses.Services
 {
     public class DIService
     {
-        static Container container { get; set; }
+        static IContainer container { get; set; }
         public static void RegisterDIService(string dbPath)
         {
-            container = new Container();
+            var builder = new ContainerBuilder();
 
-            container.Register<IDataStore>(() => new DatabaseRepository(dbPath));
-            container.Register<IProgressCalculator, ProgressCalculator>();
-            
+            builder.Register(a => new DatabaseRepository(dbPath)).As<IDataStore>();
+            builder.RegisterType<ProgressCalculator>().As<IProgressCalculator>();
+            builder.RegisterType<NewExpensePage>();
+            builder.RegisterType<NewExpenseViewModel>();
+            builder.RegisterType<BudgetsViewModel>();
+            builder.RegisterType<ItemsViewModel>();
+            builder.RegisterType<BudgetsPage>();
+            builder.RegisterType<ItemsPage>();
+            builder.RegisterType<MainPage>();
 
-            container.Verify();
+
+            container = builder.Build();
         }
 
 
         public static T Resolve<T>() where T: class
         {
-            return container.GetInstance<T>();
+            return container.Resolve<T>();
         }
     }
 }
