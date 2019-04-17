@@ -7,7 +7,7 @@ namespace MyExpenses.Models
     public class BudgetCategory
     {
         public int CategoryId { get; set; }
-        public int Bugdet { get; set; }
+        public int Budget { get; set; }
         public string Name { get; set; }
 
         public List<Expense> Expenses { get; set; }

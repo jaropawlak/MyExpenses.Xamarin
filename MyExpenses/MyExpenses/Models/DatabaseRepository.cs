@@ -18,7 +18,8 @@ namespace MyExpenses.Models
         public DatabaseRepository(string path)
         {
             _path = path;           
-            Database.EnsureCreated(); // potrzebne?
+           // Database.EnsureDeleted(); 
+            Database.EnsureCreated();          
             Database.Migrate();
         }
 

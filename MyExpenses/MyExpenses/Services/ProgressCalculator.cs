@@ -29,9 +29,9 @@ namespace MyExpenses.Services
                 var progress = new BudgetProgress { Category = category };
                 int current = expenses.Select(e => e.Amount).Aggregate(0M, (sum, i) => sum + i, a => Convert.ToInt32(a));
                 int calculated = 100;
-                if (progress.Category.Bugdet > 0)
+                if (progress.Category.Budget > 0)
                 {
-                    calculated = current * 100 / progress.Category.Bugdet;
+                    calculated = current * 100 / progress.Category.Budget;
                 }
                 if (calculated > 100)
                 {
