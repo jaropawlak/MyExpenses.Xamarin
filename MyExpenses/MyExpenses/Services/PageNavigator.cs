@@ -1,0 +1,40 @@
+﻿using MyExpenses.Models;
+using MyExpenses.ViewModels;
+using MyExpenses.Views;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace MyExpenses.Services
+{
+    public class PageNavigator
+    {
+        private Func<Expense, ItemDetailViewModel> _itemDetailViewModel;
+        private Func<ItemDetailViewModel, ItemDetailPage> _itemDetailPage;
+
+        public PageNavigator(Func<AboutPage> aboutPage, 
+            Func<NewExpensePage> newExpensePage, 
+            Func<Expense, ItemDetailViewModel> itemDetailViewModel, 
+            Func<ItemDetailViewModel, ItemDetailPage> itemDetailPage, 
+            BudgetsPage budgetsPage, 
+            ItemsPage itemsPage)//,MenuPage menuPage)
+        {
+            AboutPage = aboutPage;
+            NewExpensePage = newExpensePage;
+            BudgetsPage = budgetsPage;
+            ItemsPage = itemsPage;
+
+            _itemDetailViewModel = itemDetailViewModel;
+            _itemDetailPage = itemDetailPage;            
+        }
+
+        public Func<AboutPage> AboutPage { get; }        
+        public Func<NewExpensePage> NewExpensePage { get; }
+        public ItemsPage ItemsPage { get; }        
+        public BudgetsPage BudgetsPage { get; }
+        public ItemDetailPage ItemDetailPageForExpense(Expense expense)
+        {
+            return _itemDetailPage(_itemDetailViewModel(expense));
+        }
+    }
+}

@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using MyExpenses.Models;
 using MyExpenses.Views;
 using MyExpenses.ViewModels;
+using MyExpenses.Services;
 
 namespace MyExpenses.Views
 {
@@ -17,9 +18,12 @@ namespace MyExpenses.Views
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel viewModel;
+        private PageNavigator _pageNavigator;
 
-        public ItemsPage(ItemsViewModel model)
+        public ItemsPage(ItemsViewModel model, PageNavigator pageNavigator)
         {
+            _pageNavigator = pageNavigator;
+
             InitializeComponent();
 
             BindingContext = viewModel = model;
@@ -31,7 +35,7 @@ namespace MyExpenses.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(_pageNavigator.ItemDetailPageForExpense(item));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;

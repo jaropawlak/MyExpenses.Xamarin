@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyExpenses.Interfaces;
+using System;
 using System.Windows.Input;
 
 using Xamarin.Forms;
@@ -7,7 +8,7 @@ namespace MyExpenses.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
-        public AboutViewModel()
+        public AboutViewModel(IDataStore dataStore):base(dataStore)
         {
             Title = "About";
 

@@ -7,11 +7,17 @@ using Xamarin.Forms;
 
 using MyExpenses.Models;
 using MyExpenses.Services;
+using MyExpenses.Interfaces;
 
 namespace MyExpenses.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
-    {      
+    {
+        protected IDataStore _dataStore;
+        public BaseViewModel(IDataStore dataStore)
+        {
+            _dataStore = dataStore;
+        }
 
         bool isBusy = false;
         public bool IsBusy
@@ -21,6 +27,8 @@ namespace MyExpenses.ViewModels
         }
 
         string title = string.Empty;
+        
+
         public string Title
         {
             get { return title; }

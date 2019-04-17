@@ -19,13 +19,6 @@ namespace MyExpenses.Views
 
             BindingContext = this.viewModel = viewModel;
         }
-
-        public ItemDetailPage()
-        {
-            InitializeComponent();            
-
-            viewModel = new ItemDetailViewModel(null);
-            BindingContext = viewModel;
-        }
+        
     }
 }

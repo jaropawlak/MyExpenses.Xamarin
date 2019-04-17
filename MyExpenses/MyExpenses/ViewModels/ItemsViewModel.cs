@@ -32,11 +32,9 @@ namespace MyExpenses.ViewModels
         /// Search param date to
         /// </summary>
         public DateTime DateTo { get; set; }
-
-        private IDataStore _dataStore;
-        public ItemsViewModel(IDataStore dataStore)
-        {
-            _dataStore = dataStore;
+       
+        public ItemsViewModel(IDataStore dataStore) : base(dataStore)
+        {           
             DateFrom = DateTime.Today.AddDays(-7);
             DateTo = DateTime.Today.AddDays(1);
 

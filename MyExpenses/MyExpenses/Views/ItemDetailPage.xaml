@@ -2,18 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyExpenses.Views.ItemDetailPage"
+             xmlns:view="clr-namespace:MyExpenses.Views"
              Title="{Binding Title}">
     <StackLayout Spacing="20" Padding="15">
-        <StackLayout Orientation="Horizontal"></StackLayout>
-        <Label Text="Date:" FontSize="Medium" />
-        <Label Text="{Binding Item.Date}" FontSize="Small"/>
-        <Label Text="Category:" FontSize="Medium" />
-        <Label Text="{Binding Item.Category}" FontSize="Small"/>
-       
-        <Label Text="{Binding Item.PaymentType}" FontSize="Small"/>
-        <Label Text="Amount:" FontSize="Medium" />
-        <Label Text="{Binding Item.Amount}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        <view:ItemEditor/>
+        <Button Text="Delete" Command="{Binding DeleteCommand}"/>
     </StackLayout>
 </ContentPage>

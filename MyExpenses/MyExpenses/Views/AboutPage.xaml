@@ -5,9 +5,7 @@
              xmlns:vm="clr-namespace:MyExpenses.ViewModels"
              Title="{Binding Title}">
     
-    <ContentPage.BindingContext>
-        <vm:AboutViewModel />
-    </ContentPage.BindingContext>
+    
     
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -19,16 +19,23 @@ namespace MyExpenses.Services
 
             builder.Register(a => new DatabaseRepository(dbPath)).As<IDataStore>();
             builder.RegisterType<ProgressCalculator>().As<IProgressCalculator>();
-            builder.RegisterType<NewExpensePage>();
+
             builder.RegisterType<NewExpenseViewModel>();
             builder.RegisterType<BudgetsViewModel>();
             builder.RegisterType<ItemsViewModel>();
+            builder.RegisterType<ItemDetailViewModel>();
+
+            builder.RegisterType<NewExpensePage>();
             builder.RegisterType<BudgetsPage>();
             builder.RegisterType<ItemsPage>();
+            builder.RegisterType<ItemDetailPage>();
             builder.RegisterType<MainPage>();
+            builder.RegisterType<AboutPage>();
 
+            builder.RegisterType<PageNavigator>();
 
             container = builder.Build();
+
         }
 
 

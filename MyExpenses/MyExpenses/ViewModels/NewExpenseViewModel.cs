@@ -13,9 +13,11 @@ namespace MyExpenses.ViewModels
 {
     public class NewExpenseViewModel : BaseViewModel
     {
+        private Expense _item;
+        public Expense Item { get => _item; set => SetProperty(ref _item, value); }
         public Command AddExpenseCommand { get; set; }
 
-        private readonly IDataStore _dataStore;
+       
         private readonly IProgressCalculator _progressCalculator;
        
         public ObservableCollection<BudgetCategory> Categories { get; set; }
@@ -55,9 +57,8 @@ namespace MyExpenses.ViewModels
             }
         }
 
-        public NewExpenseViewModel(IDataStore dataStore, IProgressCalculator progressCalculator)
-        {
-            _dataStore = dataStore;
+        public NewExpenseViewModel(IDataStore dataStore, IProgressCalculator progressCalculator) :base (dataStore)
+        {            
             _progressCalculator = progressCalculator;
 
             var _task = _progressCalculator.CalculateProgress();
@@ -79,8 +80,7 @@ namespace MyExpenses.ViewModels
             Progress = new ObservableCollection<BudgetProgress>(_task.Result);
         }
 
-        private Expense _item;  
-        public Expense Item { get => _item; set => SetProperty(ref _item,value); }
+       
 
         async Task ExecuteAddExpenseCommand()
         {
