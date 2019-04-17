@@ -12,5 +12,6 @@ namespace MyExpenses.Models
         public GridLength Progress { get; set; }
         public GridLength Remaining { get; internal set; }
         public Xamarin.Forms.Color Color { get; internal set; }
+        public string Description { get; internal set; }
     }
 }

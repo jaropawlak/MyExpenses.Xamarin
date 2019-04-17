@@ -70,7 +70,7 @@
                                 </Grid.ColumnDefinitions>
                                 <BoxView Grid.Row="0" Grid.Column="0" BackgroundColor="{Binding Color}"></BoxView>
                                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Category.Name}" HorizontalOptions="Start"></Label>
-                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Category.Budget, StringFormat='{0:N0}' }" HorizontalOptions="End"></Label>
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Description}" HorizontalOptions="End"></Label>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

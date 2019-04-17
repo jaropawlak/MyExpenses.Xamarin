@@ -52,6 +52,7 @@ namespace MyExpenses.Services
                 }
                 progress.Progress = new GridLength(calculated, GridUnitType.Star);
                 progress.Remaining = new GridLength(remaining, GridUnitType.Star);
+                progress.Description = $"{current} / {progress.Category.Budget}";
                 result.Add(progress);
             }
 
