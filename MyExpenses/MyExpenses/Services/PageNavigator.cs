@@ -16,7 +16,7 @@ namespace MyExpenses.Services
             Func<NewExpensePage> newExpensePage, 
             Func<Expense, ItemDetailViewModel> itemDetailViewModel, 
             Func<ItemDetailViewModel, ItemDetailPage> itemDetailPage, 
-            BudgetsPage budgetsPage, 
+            Func<BudgetsPage> budgetsPage, 
             Func<ItemsPage> itemsPage)//,MenuPage menuPage)
         {
             AboutPage = aboutPage;
@@ -31,7 +31,7 @@ namespace MyExpenses.Services
         public Func<AboutPage> AboutPage { get; }        
         public Func<NewExpensePage> NewExpensePage { get; }
         public Func<ItemsPage> ItemsPage { get; }        
-        public BudgetsPage BudgetsPage { get; }
+        public Func<BudgetsPage> BudgetsPage { get; }
         public ItemDetailPage ItemDetailPageForExpense(Expense expense)
         {
             return _itemDetailPage(_itemDetailViewModel(expense));

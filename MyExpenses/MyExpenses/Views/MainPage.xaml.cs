@@ -31,10 +31,10 @@ namespace MyExpenses.Views
                 switch (id)
                 {
                     case (int)MenuItemType.History:
-                        MenuPages.Add(id, new NavigationPage(_pageNavigator.ItemsPage));
+                        MenuPages.Add(id, new NavigationPage(_pageNavigator.ItemsPage()));
                         break;
                     case (int)MenuItemType.Budgets:
-                        MenuPages.Add(id, new NavigationPage(_pageNavigator.BudgetsPage));
+                        MenuPages.Add(id, new NavigationPage(_pageNavigator.BudgetsPage()));
                         break;
                     default:
                     //case (int)MenuItemType.About:
