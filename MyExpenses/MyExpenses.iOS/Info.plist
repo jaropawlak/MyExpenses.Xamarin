@@ -36,5 +36,7 @@
 	<array>
 		<string>fontawesome-webfont.ttf</string>
 	</array>	
+	<key>MinimumOSVersion</key>
+	<string>11.4</string>
 </dict>
 </plist>
