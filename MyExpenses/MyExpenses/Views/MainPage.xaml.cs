@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace MyExpenses.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [Preserve(AllMembers =true)]
+    
     public partial class MainPage : MasterDetailPage
     {
         Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();

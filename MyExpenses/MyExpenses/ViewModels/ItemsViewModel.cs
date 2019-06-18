@@ -40,7 +40,8 @@ namespace MyExpenses.ViewModels
 
             Title = "History";
             Items = new ObservableCollection<Expense>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());           
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            MessagingCenter.Subscribe<ItemEditorViewModel>(this, Constants.ExpenseChanged, async (sender) => await ExecuteLoadItemsCommand());
         }
         
         async Task ExecuteLoadItemsCommand()

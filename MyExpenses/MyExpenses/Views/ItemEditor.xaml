@@ -33,7 +33,7 @@
                 <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Item.Description}" FontSize="Micro" Placeholder="Description" />
 
                 <fl:FALabel Grid.Column="0" Grid.Row="2" Icon="PaymentType" FontSize="Micro" VerticalTextAlignment="Center"/>
-                <Picker Grid.Column="1" Grid.Row="2" ItemsSource="{Binding PaymentTypes}" SelectedIndex="{Binding SelectedPaymentTypeIndex}" FontSize="Micro" />
+                <Picker Grid.Column="1" Grid.Row="2" ItemsSource="{Binding PaymentTypes}" SelectedIndex="{Binding SelectedPaymentTypeIndex}"  FontSize="Micro" />
 
                 <fl:FALabel Grid.Column="0" Grid.Row="3" Icon="Date" FontSize="Micro" VerticalTextAlignment="Center"/>
                 <DatePicker  HorizontalOptions="Start" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Date="{Binding Date}"></DatePicker>

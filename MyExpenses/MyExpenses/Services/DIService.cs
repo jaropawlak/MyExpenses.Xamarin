@@ -7,6 +7,8 @@ using MyExpenses.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace MyExpenses.Services
 {
@@ -23,6 +25,7 @@ namespace MyExpenses.Services
             builder.RegisterType<NewExpenseViewModel>();
             builder.RegisterType<BudgetsViewModel>();
             builder.RegisterType<ItemsViewModel>();
+            builder.RegisterType<ItemEditorViewModel>();
             builder.RegisterType<ItemDetailViewModel>();
 
             builder.RegisterType<NewExpensePage>();
@@ -36,6 +39,7 @@ namespace MyExpenses.Services
 
             container = builder.Build();
 
+            DependencyResolver.ResolveUsing(type => container.IsRegistered(type) ? container.Resolve(type) : null);
         }
 
 

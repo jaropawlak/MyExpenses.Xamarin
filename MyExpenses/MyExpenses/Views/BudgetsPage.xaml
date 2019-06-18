@@ -15,8 +15,8 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <ListView                  
+        <StackLayout VerticalOptions="FillAndExpand">
+            <ListView RowHeight="70"                
                 ItemsSource="{Binding BudgetCategories}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -24,10 +24,10 @@
                             <ViewCell.ContextActions>
                                 <MenuItem IsDestructive="True" Text="Delete" Command="{Binding Source={x:Reference BudgetsContentView}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding .}"></MenuItem>
                             </ViewCell.ContextActions>
-                            <StackLayout Orientation="Horizontal" Padding="10">
-                                
-                                <Entry Placeholder="Name" HorizontalOptions="FillAndExpand"  Text="{Binding Name, Mode=TwoWay}"></Entry>
-                                <Entry Placeholder="Budget" Keyboard="Numeric" HorizontalOptions="FillAndExpand" Text="{Binding Budget, Mode=TwoWay}" ></Entry>
+                            <StackLayout Orientation="Horizontal" Padding="10" VerticalOptions="FillAndExpand" >
+
+                                <Entry FontSize="Small" Placeholder="Name" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"  Text="{Binding Name, Mode=TwoWay}"></Entry>
+                                <Entry FontSize="Small" Placeholder="Budget" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Text="{Binding Budget, Mode=TwoWay}" ></Entry>
                               
                             </StackLayout>
                         </ViewCell>

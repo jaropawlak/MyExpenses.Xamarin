@@ -31,7 +31,7 @@ namespace MyExpenses.ViewModels
         public async Task SaveChanges()
         {
             await _dataStore.SaveAsync();  
-            MessagingCenter.Send(this, "CategoriesChanged");
+            MessagingCenter.Send(this, Constants.CategoriesChanged);
         }
 
         internal async Task Delete(BudgetCategory budgetCategory)

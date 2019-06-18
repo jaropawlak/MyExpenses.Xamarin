@@ -2,7 +2,6 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MyExpenses.Views;
-using MyExpenses.Models;
 using System.Diagnostics;
 using MyExpenses.Services;
 
@@ -10,17 +9,21 @@ using MyExpenses.Services;
 namespace MyExpenses
 {
     public partial class App : Application
-    {        
+    {
+        private string _dbPath;
+       
+
         public App(string dbPath)
         {
+            _dbPath = dbPath;
             InitializeComponent();
             Debug.WriteLine($"Database located at: {dbPath}");
-            DIService.RegisterDIService(dbPath);
-            MainPage = DIService.Resolve<MainPage>();
+            DIService.RegisterDIService(_dbPath);
+            MainPage = DependencyService.Resolve<MainPage>();
         }
 
         protected override void OnStart()
-        {
+        {            
             // Handle when your app starts
         }
 
