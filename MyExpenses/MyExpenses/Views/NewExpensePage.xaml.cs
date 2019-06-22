@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using MyExpenses.Models;
 using MyExpenses.ViewModels;
 using MyExpenses.Services;
+using MyExpenses.Interfaces;
 
 namespace MyExpenses.Views
 {
@@ -20,7 +21,13 @@ namespace MyExpenses.Views
         {
             InitializeComponent();           
             BindingContext = viewModel = model;
-            
+
+            MessagingCenter.Subscribe<ItemEditorViewModel>(this, Constants.ExpenseChanged, async (sender) =>
+            {
+                await DisplayAlert("Success", "Expense was added", "Ok!");
+
+            });
+
         }
        
     }
