@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyExpenses.Views.ItemDetailPage"
              xmlns:view="clr-namespace:MyExpenses.Views"
              Title="{Binding Title}">
     <StackLayout Spacing="20" Padding="15">
-        <view:ItemEditor/>
+        <view:ItemEditor x:Name="Editor"/>
       <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-            <Button Text="Update" Padding="10" Command="{Binding EditorModel.UpdateCommand}"/>
-            <Button Text="Delete" Command="{Binding EditorModel.DeleteCommand}"/>        
+            <Button Text="Update" Padding="10" Command="{Binding UpdateCommand}"/>
+            <Button Text="Delete" Command="{Binding DeleteCommand}"/>        
       </StackLayout>
     </StackLayout>
 </ContentPage>

@@ -20,6 +20,7 @@ namespace MyExpenses.Views
         {
             InitializeComponent();           
             BindingContext = viewModel = model;
+            
         }
        
     }

@@ -6,19 +6,19 @@ using Xamarin.Forms;
 
 namespace MyExpenses.ViewModels
 {
-    public class ItemDetailViewModel : BaseViewModel
+    public class ItemDetailViewModel : ItemEditorViewModel
     {
-        public ItemEditorViewModel EditorModel { get; set; }
+       
       
         
         public ItemDetailViewModel(Expense item, IDataStore dataStore):base(dataStore)
         {
-            EditorModel = new ItemEditorViewModel(dataStore, item);
-            Title = item?.Category?.Name;          
+            Item = item;
+            Title = item?.Category?.Name;
 
-           
+            
         }
 
-       
+        
     }
 }

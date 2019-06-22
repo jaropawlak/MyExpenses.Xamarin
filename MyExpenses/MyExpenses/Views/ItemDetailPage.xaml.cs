@@ -15,10 +15,14 @@ namespace MyExpenses.Views
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
-            InitializeComponent();
-
+            InitializeComponent();            
             BindingContext = this.viewModel = viewModel;
+            viewModel.ExpenseWasModified += ViewModel_ExpenseWasModified;
         }
-        
+
+        private void ViewModel_ExpenseWasModified(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
+        }
     }
 }
