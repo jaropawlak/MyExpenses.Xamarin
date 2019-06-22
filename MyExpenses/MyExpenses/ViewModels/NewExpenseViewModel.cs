@@ -11,12 +11,9 @@ using Xamarin.Forms;
 
 namespace MyExpenses.ViewModels
 {
-    public class NewExpenseViewModel : BaseViewModel
+    public class NewExpenseViewModel : ItemEditorViewModel
     {
-        public ItemEditorViewModel EditorModel { get; set; }
-       
-       
-
+        
        
         private readonly IProgressCalculator _progressCalculator;
        
@@ -42,7 +39,6 @@ namespace MyExpenses.ViewModels
             try
             {
                 _progressCalculator = progressCalculator;
-                EditorModel = new ItemEditorViewModel(dataStore);
                 var _task = _progressCalculator.CalculateProgress();
 
                 MessagingCenter.Subscribe<BudgetsViewModel>(this, Constants.CategoriesChanged, async (sender) =>

@@ -20,17 +20,17 @@
                     <RowDefinition Height="40"></RowDefinition>
                 </Grid.RowDefinitions>
         
-                <fl:FALabel Grid.Column="0" Grid.Row="0" Icon="Amount" FontSize="Micro" VerticalTextAlignment="Center">
+                <fl:FALabel Grid.Column="0" x:Name="AmountLabel" Grid.Row="0" Icon="Amount" FontSize="Micro" VerticalTextAlignment="Center">
 
                 </fl:FALabel>
-                <Entry  Grid.Column="1" Grid.Row="0" Text="{Binding Item.Amount}" FontSize="Micro" Keyboard="Numeric" />
+                <Entry  Grid.Column="1" x:Name="AmountEntry" Grid.Row="0" Text="{Binding Item.Amount}" FontSize="Micro" Keyboard="Numeric" />
 
                 <fl:FALabel Grid.Column="2" Grid.Row="0"  Icon="Category" FontSize="Micro" VerticalTextAlignment="Center"/>
                 <Picker Grid.Column="3" Grid.Row="0" SelectedItem="{Binding Item.Category}" ItemsSource="{Binding Categories}" ItemDisplayBinding="{Binding Name}" FontSize="Micro" />
 
 
-                <fl:FALabel Grid.Column="0" Grid.Row="1" Icon="Description" FontSize="Micro" VerticalTextAlignment="Center" />
-                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Item.Description}" FontSize="Micro" Placeholder="Description" />
+                <fl:FALabel Grid.Column="0" x:Name="DescriptionLabel" Grid.Row="1" Icon="Description" FontSize="Micro" VerticalTextAlignment="Center" />
+                <Entry Grid.Column="1" Grid.Row="1" x:Name="DescriptionEntry" Text="{Binding Item.Description}" FontSize="Micro" Placeholder="Description" />
 
                 <fl:FALabel Grid.Column="0" Grid.Row="2" Icon="PaymentType" FontSize="Micro" VerticalTextAlignment="Center"/>
                 <Picker Grid.Column="1" Grid.Row="2" ItemsSource="{Binding PaymentTypes}" SelectedIndex="{Binding SelectedPaymentTypeIndex}"  FontSize="Micro" />

@@ -16,6 +16,9 @@ namespace MyExpenses.ViewModels
         public Command DeleteCommand { get; set; }
         public Command UpdateCommand { get; set; }
 
+        public event EventHandler<string> ValidationEvent;
+        public event EventHandler ExpenseWasModified;
+
         private Expense _item;
         public Expense Item { get => _item; set => SetProperty(ref _item, value); }
 
@@ -88,22 +91,51 @@ namespace MyExpenses.ViewModels
         }
 
         async Task ExecuteAddExpenseCommand()
-        {           
+        {
             UpdateItem();
 
-            await _dataStore.AddExpenseAsync(Item);
-            Device.BeginInvokeOnMainThread(()=>  MessagingCenter.Send(this, Constants.ExpenseChanged));
-            Item = new Expense();
+            if (ValidateData())
+            {
+                await _dataStore.AddExpenseAsync(Item);
+                Device.BeginInvokeOnMainThread(() => MessagingCenter.Send(this, Constants.ExpenseChanged));
+                ExpenseWasModified?.Invoke(this, EventArgs.Empty);
+                Item = new Expense();
+            }
         }
+
+        private bool ValidateData()
+        {
+            bool status = true;
+            if (Item.Amount <= 0)
+            {
+                ValidationEvent?.Invoke(this, nameof(Item.Amount));
+                status = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Item.Description))
+            {
+                ValidationEvent?.Invoke(this, nameof(Item.Description));
+                status = false;
+            }
+            return status;
+        }
+
         private async Task DeleteItemAsync()
         {
             await _dataStore.DeleteExpenseAsync(Item.Id);
             Device.BeginInvokeOnMainThread(() => MessagingCenter.Send(this, Constants.ExpenseChanged));
+            ExpenseWasModified?.Invoke(this, EventArgs.Empty);
         }
         private async Task UpdateItemAsync()
         {
-            await _dataStore.UpdateExpenseAsync(_item);
-            Device.BeginInvokeOnMainThread(() => MessagingCenter.Send(this, Constants.ExpenseChanged));
+            UpdateItem();
+
+            if (ValidateData())
+            {
+                await _dataStore.UpdateExpenseAsync(_item);
+                Device.BeginInvokeOnMainThread(() => MessagingCenter.Send(this, Constants.ExpenseChanged));
+                ExpenseWasModified?.Invoke(this, EventArgs.Empty);
+            }
         }
 
     }

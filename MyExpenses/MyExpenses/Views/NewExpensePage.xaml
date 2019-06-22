@@ -8,7 +8,7 @@
              Title="New Item">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Command="{Binding EditorModel.AddExpenseCommand}">
+        <ToolbarItem Text="Save" Command="{Binding AddExpenseCommand}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>
@@ -19,7 +19,7 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-            <view:ItemEditor BindingContext="{Binding EditorModel}"/>
+            <view:ItemEditor x:Name="Editor"/>
 
             <ListView 
                 VerticalOptions="End"
