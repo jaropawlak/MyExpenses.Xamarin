@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # Ten plik .gitignore został utworzony automatycznie przez Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -11,3 +11,4 @@
 /MyExpenses/MyExpenses.UWP/bin/
 /MyExpenses/MyExpenses.UWP/obj
 /.vs/MyExpenses
+MyExpenses/MyExpenses/bin/
