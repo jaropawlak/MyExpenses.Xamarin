@@ -20,7 +20,7 @@ namespace MyExpenses.Models
             _path = path;           
            // Database.EnsureDeleted(); 
             Database.EnsureCreated();          
-            Database.Migrate();
+           // Database.Migrate();
         }
 
         public DbSet<Expense> Expenses { get; set; }

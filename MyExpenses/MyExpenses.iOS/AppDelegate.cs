@@ -24,7 +24,7 @@ namespace MyExpenses.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            var lib = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Librry", "Data");
+            var lib = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", "Data");
             if (!Directory.Exists(lib))
             {
                 Directory.CreateDirectory(lib);
