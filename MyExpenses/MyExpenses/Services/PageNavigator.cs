@@ -4,6 +4,7 @@ using MyExpenses.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms.Internals;
 
 namespace MyExpenses.Services
 {
@@ -11,7 +12,7 @@ namespace MyExpenses.Services
     {
         private Func<Expense, ItemDetailViewModel> _itemDetailViewModel;
         private Func<ItemDetailViewModel, ItemDetailPage> _itemDetailPage;
-
+        [Preserve]
         public PageNavigator(Func<AboutPage> aboutPage, 
             Func<NewExpensePage> newExpensePage, 
             Func<Expense, ItemDetailViewModel> itemDetailViewModel, 

@@ -2,6 +2,16 @@
 <linker>
   <assembly fullname="mscorlib">
     <type fullname="System.DateTime" preserve="methods"></type>
+    <type fullname="System.String">
+            <method name="Compare">
+            </method>
+            <method name="CompareTo">
+            </method>
+            <method name="ToUpper">
+            </method>
+            <method name="ToLower">
+            </method>
+        </type>
   </assembly>
   <assembly fullname="System.Core">
     <type fullname="System.Linq.Expressions.Expression`1">
@@ -9,4 +19,11 @@
     <type fullname="System.Linq.Queryable">
     </type>
   </assembly>
+  <assembly fullname="Autofac">    
+       <type fullname="Autofac*" />    
+  </assembly>
+  <assembly fullname="MyExpenses">    
+       <type fullname="MyExpenses*" />    
+  </assembly>
+
 </linker>
