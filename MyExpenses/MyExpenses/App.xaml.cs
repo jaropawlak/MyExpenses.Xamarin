@@ -19,7 +19,8 @@ namespace MyExpenses
             InitializeComponent();
             Debug.WriteLine($"Database located at: {dbPath}");
             DIService.RegisterDIService(_dbPath);
-            MainPage = DependencyService.Resolve<MainPage>();
+            var pn = new PageNavigator();
+            MainPage = pn.MainPage();
         }
 
         protected override void OnStart()

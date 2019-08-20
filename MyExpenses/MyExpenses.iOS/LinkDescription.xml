@@ -19,8 +19,8 @@
     <type fullname="System.Linq.Queryable">
     </type>
   </assembly>
-  <assembly fullname="Autofac">    
-       <type fullname="Autofac*" />    
+  <assembly fullname="Microsoft.EntityFrameworkCore.SqLite">    
+       <type fullname="Microsoft.EntityFrameworkCore*" />    
   </assembly>
   <assembly fullname="MyExpenses">    
        <type fullname="MyExpenses*" />    

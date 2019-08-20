@@ -1,4 +1,5 @@
-﻿using MyExpenses.Models;
+﻿using MyExpenses.Interfaces;
+using MyExpenses.Models;
 using MyExpenses.ViewModels;
 using MyExpenses.Views;
 using System;
@@ -10,32 +11,15 @@ namespace MyExpenses.Services
 {
     public class PageNavigator
     {
-        private Func<Expense, ItemDetailViewModel> _itemDetailViewModel;
-        private Func<ItemDetailViewModel, ItemDetailPage> _itemDetailPage;
-        [Preserve]
-        public PageNavigator(Func<AboutPage> aboutPage, 
-            Func<NewExpensePage> newExpensePage, 
-            Func<Expense, ItemDetailViewModel> itemDetailViewModel, 
-            Func<ItemDetailViewModel, ItemDetailPage> itemDetailPage, 
-            Func<BudgetsPage> budgetsPage, 
-            Func<ItemsPage> itemsPage)//,MenuPage menuPage)
-        {
-            AboutPage = aboutPage;
-            NewExpensePage = newExpensePage;
-            BudgetsPage = budgetsPage;
-            ItemsPage = itemsPage;
-
-            _itemDetailViewModel = itemDetailViewModel;
-            _itemDetailPage = itemDetailPage;            
-        }
-
-        public Func<AboutPage> AboutPage { get; }        
-        public Func<NewExpensePage> NewExpensePage { get; }
-        public Func<ItemsPage> ItemsPage { get; }        
-        public Func<BudgetsPage> BudgetsPage { get; }
-        public ItemDetailPage ItemDetailPageForExpense(Expense expense)
-        {
-            return _itemDetailPage(_itemDetailViewModel(expense));
-        }
+        public static string dbPath { get; set; }
+        private IDataStore _dataStore = new DatabaseRepository(dbPath);
+        private IDataStore DataStore { get => _dataStore; }        
+        public AboutPage AboutPage() => new AboutPage(); 
+        public NewExpensePage NewExpensePage() => new NewExpensePage(new NewExpenseViewModel(DataStore, new ProgressCalculator(DataStore))); 
+        public ItemsPage ItemsPage() => new ItemsPage(new ItemsViewModel(DataStore), this);         
+        public BudgetsPage BudgetsPage() => new BudgetsPage(new BudgetsViewModel(DataStore)); 
+        public ItemDetailPage ItemDetailPageForExpense(Expense expense) => new ItemDetailPage(new ItemDetailViewModel(expense, DataStore)); 
+        public MainPage MainPage() => new MainPage(this);
+        
     }
 }

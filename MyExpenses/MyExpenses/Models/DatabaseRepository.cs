@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-
+using Xamarin.Forms.Internals;
 [assembly: Dependency (typeof(MyExpenses.Models.DatabaseRepository))]
 namespace MyExpenses.Models
 {
@@ -22,7 +22,7 @@ namespace MyExpenses.Models
             Database.EnsureCreated();          
            // Database.Migrate();
         }
-
+       
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<BudgetCategory> Categories { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
