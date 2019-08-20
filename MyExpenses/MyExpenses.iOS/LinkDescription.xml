@@ -18,10 +18,7 @@
     </type>
     <type fullname="System.Linq.Queryable">
     </type>
-  </assembly>
-  <assembly fullname="Microsoft.EntityFrameworkCore.SqLite">    
-       <type fullname="Microsoft.EntityFrameworkCore*" />    
-  </assembly>
+  </assembly>  
   <assembly fullname="MyExpenses">    
        <type fullname="MyExpenses*" />    
   </assembly>
